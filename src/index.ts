@@ -22,7 +22,7 @@ const onCodeReceived = async (data: { msg: string }) => {
     //   "msg": "【网上国网】932324，您申请的网上国网验证码。有效期为10分钟。如有疑问，请致电国网客服中心95598。"
     // }
     if (!currentFlow) return;
-    const code = data.msg.match(/\d{6}/)?.[0];
+    const code = data.msg.match(/(\d{6})[^\d]/)?.[1];
     if (!code) {
         console.error('未找到验证码');
         return;
